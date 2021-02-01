@@ -17,14 +17,16 @@ class DemandSerializer(serializers.ModelSerializer):
         read_only_fields = ('user_created', 'date_created', 'user_updated',
                             'date_updated', 'date_completed')
 
-    def update(self, valid_data):
+    def update(self, instance, valid_data):
         # Set default user updated for current user and updated date
-        valid_data['user_updated'] = self.context['request'].user
-        valid_data['date_updated'] = timezone.now
+        instance.user_updated = self.context['request'].user
+        instance.date_updated = timezone.now()
         # If demand is completed set completed date
-        if valid_data['is_completed'] and  not valid_data['date_completed']:
-            valid_data['date_completed'] = timezone.now
-        return Demand.objects.create(**valid_data)
+        if valid_data.get('is_completed', False) and not instance.is_completed:
+            instance.date_completed = timezone.now()
+        elif 'is_completed' in valid_data and not valid_data.get('is_completed', False):
+            instance.date_completed = None
+        return super().update(instance, valid_data)
     
     def create(self, valid_data):
         # Set default user created for current user

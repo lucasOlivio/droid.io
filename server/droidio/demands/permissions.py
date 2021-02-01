@@ -10,5 +10,4 @@ class IsOwnerOrAdmin(permissions.BasePermission):
 
         if request.user.is_superuser:
             return True
-
-        return obj.user_created == request.user
+        return obj.user_created.pk == request.user.pk

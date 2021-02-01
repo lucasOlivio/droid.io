@@ -14,7 +14,7 @@ from .demands.views import DemandViewSet
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
-router.register(r'demands', DemandViewSet, basename='Demand')
+router.register(r'demands', DemandViewSet, basename='demands')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

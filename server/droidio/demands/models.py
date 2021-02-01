@@ -35,6 +35,7 @@ class Demand(models.Model):
     )
     delivery_complement = models.CharField(
         verbose_name='Complemento', max_length=255,
+        null=True, blank=True,
         help_text='Complemento de entrega.'
     )
     delivery_cep = models.CharField(
