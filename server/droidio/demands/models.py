@@ -99,7 +99,8 @@ class Demand(models.Model):
              {self.delivery_complement}, {self.delivery_city}, {self.delivery_state} - {self.delivery_cep}"
 
     def __str__(self):
-        return f'{self.description} - { "Aberta" if not self.is_completed else "Finalizada"}'
+        return f'{self.description} - \
+            { "Aberta" if not self.is_completed else "Finalizada"}'
 
     class Meta:
         ordering = ["-date_created"]
