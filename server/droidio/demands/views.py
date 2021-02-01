@@ -4,10 +4,10 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Demand
 from .permissions import IsOwnerOrAdmin
 from .serializers import DemandSerializer
-from .mixins import DemandsListMixin
 
 
 class DemandViewSet(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
                   mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   viewsets.GenericViewSet):
@@ -23,13 +23,3 @@ class DemandViewSet(mixins.ListModelMixin,
                 user_created=self.request.user
             )
         return Demand.objects.all()
-
-
-class DemandCreateViewSet(mixins.CreateModelMixin,
-                        viewsets.GenericViewSet):
-    """
-    Creates demands
-    """
-    queryset = Demand.objects.all()
-    serializer_class = DemandSerializer
-    permission_classes = (IsAuthenticated,)

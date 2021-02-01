@@ -1,10 +1,9 @@
 from django.apps import AppConfig
-from django.utils.translation import gettext_lazy as _
 
 
 class DemandsConfig(AppConfig):
     name = "droidio.demands"
-    verbose_name = _("Demands")
+    verbose_name = "Demands"
 
     def ready(self):
         try:

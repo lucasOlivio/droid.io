@@ -9,6 +9,7 @@ class DemandSerializer(serializers.ModelSerializer):
     """
     Serializer to list, update and delete demands
     """
+    user_created = serializers.StringRelatedField()
 
     class Meta:
         model = Demand

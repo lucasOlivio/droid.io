@@ -14,7 +14,7 @@ class Demand(models.Model):
         help_text='Descrição da peça que está sendo solicitada.'
     )
     is_completed = models.BooleanField(
-        verbose_name='Status', default=False,
+        verbose_name='Finalizada', default=False,
         help_text='Status de finalização da entrega.'
     )
 
@@ -42,7 +42,7 @@ class Demand(models.Model):
         help_text='CEP de entrega.'
     )
     delivery_name = models.CharField(
-        verbose_name='Nome destinatário', max_lengt=255,
+        verbose_name='Nome destinatário', max_length=255,
         help_text='Nome da pessoa que receberá a entrega.'
     )
 
@@ -65,7 +65,7 @@ class Demand(models.Model):
         verbose_name='Data de criação', default=timezone.now
     )
     user_updated = models.ForeignKey(
-        User, verbose_name='Atualizador', null=True,
+        User, verbose_name='Atualizador', null=True, blank=True,
         on_delete=models.CASCADE, help_text='Último usuário que atualizou a demanda.'
     )
     date_updated = models.DateTimeField(
@@ -73,12 +73,12 @@ class Demand(models.Model):
         help_text='Data da ultima atualização da demanda.'
     )
     date_completed = models.DateTimeField(
-        verbose_name='Data de finalização', null=True,
+        verbose_name='Data de finalização', null=True, blank=True,
         help_text='Data que a demanda foi finalizada.'
     )
 
     def __str__(self):
-        return f'{self.description} - { "Aberta" if self.is_completed else "Finalizada"}'
+        return f'{self.description} - { "Aberta" if not self.is_completed else "Finalizada"}'
 
     class Meta:
         verbose_name = "Demanda"
