@@ -12,11 +12,7 @@ class DemandSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Demand
-        fields = ('id', 'description', 'is_completed', 'delivery_state',
-                    'delivery_city', 'delivery_street', 'delivery_number',
-                    'delivery_complement', 'delivery_cep', 'delivery_name',
-                    'cellphone', 'email', 'user_created', 'date_created',
-                    'user_updated', 'date_updated', 'date_completed')
+        fields = '__all__'
         read_only_fields = ('user_created', 'date_created', 'user_updated',
                             'date_updated', 'date_completed')
 

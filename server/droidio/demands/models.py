@@ -58,7 +58,7 @@ class Demand(models.Model):
     )
 
     user_created = models.ForeignKey(
-        User, verbose_name='Criador', 
+        User, verbose_name='Criador', related_name='demands',
         on_delete=models.CASCADE, help_text='Criador da demanda.'
     )
     date_created = models.DateTimeField(
