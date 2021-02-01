@@ -22,6 +22,7 @@ INSTALLED_APPS = (
 
     # Your apps
     'droidio.users.apps.UsersConfig',
+    'droidio.demands.apps.DemandsConfig',
 
 )
 
