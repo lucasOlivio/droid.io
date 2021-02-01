@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+
 from droidio.users.models import User
 
 
@@ -64,7 +65,7 @@ class Demand(models.Model):
         verbose_name='Data de criação', default=timezone.now
     )
     user_updated = models.ForeignKey(
-        User, verbose_name='Atualizador', 
+        User, verbose_name='Atualizador', null=True,
         on_delete=models.CASCADE, help_text='Último usuário que atualizou a demanda.'
     )
     date_updated = models.DateTimeField(
@@ -72,7 +73,7 @@ class Demand(models.Model):
         help_text='Data da ultima atualização da demanda.'
     )
     date_completed = models.DateTimeField(
-        verbose_name='Data de finalização', default=timezone.now,
+        verbose_name='Data de finalização', null=True,
         help_text='Data que a demanda foi finalizada.'
     )
 
