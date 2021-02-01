@@ -12,15 +12,13 @@ from .demands.views import DemandViewSet
 
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'users', UserCreateViewSet)
-router.register(r'demands', DemandViewSet, basename='demands')
+router.register(r"users", UserViewSet)
+router.register(r"users", UserCreateViewSet)
+router.register(r"demands", DemandViewSet, basename="demands")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-    path('api-token-auth/', views.obtain_auth_token),
-
-    re_path(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
-
+    path("admin/", admin.site.urls),
+    path("api/v1/", include(router.urls)),
+    path("api-token-auth/", views.obtain_auth_token),
+    re_path(r"^$", RedirectView.as_view(url=reverse_lazy("api-root"), permanent=False)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

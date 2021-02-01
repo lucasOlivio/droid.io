@@ -1,16 +1,17 @@
-import pytest
 from django.test import TestCase
 from django.forms.models import model_to_dict
 from django.contrib.auth.hashers import check_password
-from nose.tools import eq_, ok_
+
 from .factories import UserFactory
 from ..serializers import CreateUserSerializer
+
+import pytest
+from nose.tools import eq_, ok_
 
 pytestmark = pytest.mark.django_db
 
 
 class TestCreateUserSerializer(TestCase):
-
     def setUp(self):
         self.user_data = model_to_dict(UserFactory.build())
 
@@ -27,4 +28,4 @@ class TestCreateUserSerializer(TestCase):
         ok_(serializer.is_valid())
 
         user = serializer.save()
-        ok_(check_password(self.user_data.get('password'), user.password))
+        ok_(check_password(self.user_data.get("password"), user.password))

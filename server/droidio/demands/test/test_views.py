@@ -26,7 +26,7 @@ class TestDemandListTestCase(APITestCase):
     def setUp(self):
         self.user = UserFactory()
         self.client.force_authenticate(user=self.user)
-        self.url = reverse('demands-list')
+        self.url = reverse("demands-list")
         self.demand_data = factory.build(dict, FACTORY_CLASS=DemandFactory)
 
     def test_post_request_with_no_data_fails(self):
@@ -37,8 +37,8 @@ class TestDemandListTestCase(APITestCase):
         response = self.client.post(self.url, self.demand_data)
         eq_(response.status_code, status.HTTP_201_CREATED)
 
-        demand = Demand.objects.get(pk=response.data.get('id'))
-        eq_(demand.description, self.demand_data.get('description'))
+        demand = Demand.objects.get(pk=response.data.get("id"))
+        eq_(demand.description, self.demand_data.get("description"))
 
     def test_get_list_returns_only_my_demands(self):
         # Set testing demands
@@ -51,8 +51,8 @@ class TestDemandListTestCase(APITestCase):
 
         demands = Demand.objects.filter(user_created=self.user)
         serializer = DemandSerializer(demands, many=True)
-        eq_(response.data['count'], 1)
-        eq_(response.data['results'], serializer.data)
+        eq_(response.data["count"], 1)
+        eq_(response.data["results"], serializer.data)
 
 
 class TestDemandDetailTestCase(APITestCase):
@@ -64,7 +64,7 @@ class TestDemandDetailTestCase(APITestCase):
         self.user = UserFactory()
         self.client.force_authenticate(user=self.user)
         self.demand = DemandFactory(user_created=self.user)
-        self.url = reverse('demands-detail', kwargs={'pk': self.demand.pk})
+        self.url = reverse("demands-detail", kwargs={"pk": self.demand.pk})
 
     def test_get_request_returns_a_given_demand(self):
         response = self.client.get(self.url)
@@ -72,7 +72,7 @@ class TestDemandDetailTestCase(APITestCase):
 
     def test_patch_request_updates_a_demand(self):
         new_description = fake.text()
-        payload = {'description': new_description}
+        payload = {"description": new_description}
         response = self.client.patch(self.url, payload)
         eq_(response.status_code, status.HTTP_200_OK)
 
@@ -85,7 +85,7 @@ class TestDemandDetailTestCase(APITestCase):
         eq_(response.status_code, status.HTTP_200_OK)
 
         demand = Demand.objects.get(pk=self.demand.id)
-        eq_(demand.description, payload['description'])
+        eq_(demand.description, payload["description"])
 
     def test_delete_request_deletes_a_demand(self):
         response = self.client.delete(self.url)

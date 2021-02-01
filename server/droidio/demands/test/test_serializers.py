@@ -11,7 +11,6 @@ pytestmark = pytest.mark.django_db
 
 
 class TestCreateDemandSerializer(TestCase):
-
     def setUp(self):
         self.demand_data = model_to_dict(DemandFactory.build())
 
