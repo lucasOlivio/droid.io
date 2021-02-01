@@ -81,5 +81,6 @@ class Demand(models.Model):
         return f'{self.description} - { "Aberta" if not self.is_completed else "Finalizada"}'
 
     class Meta:
+        ordering = ['-date_created']
         verbose_name = "Demanda"
         verbose_name_plural = "Demandas"
