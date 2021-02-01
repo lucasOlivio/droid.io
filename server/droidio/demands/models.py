@@ -66,7 +66,7 @@ class Demand(models.Model):
         verbose_name='Data de criação', default=timezone.now
     )
     user_updated = models.ForeignKey(
-        User, verbose_name='Atualizador', null=True, blank=True,
+        User, verbose_name='Ultimo atualizador', null=True, blank=True,
         on_delete=models.CASCADE, help_text='Último usuário que atualizou a demanda.'
     )
     date_updated = models.DateTimeField(
@@ -78,8 +78,13 @@ class Demand(models.Model):
         help_text='Data que a demanda foi finalizada.'
     )
 
+    def delivery_address(self):
+        return f'{self.delivery_street}, {self.delivery_number},\
+             {self.delivery_complement}, {self.delivery_city}, {self.delivery_state} - {self.delivery_cep}'
+
     def __str__(self):
-        return f'{self.description} - { "Aberta" if not self.is_completed else "Finalizada"}'
+        return f'{self.description} - \
+            { "Aberta" if not self.is_completed else "Finalizada"}'
 
     class Meta:
         ordering = ['-date_created']
