@@ -2,7 +2,6 @@ import os
 from .common import *
 
 
-INSTALLED_APPS = Common.INSTALLED_APPS
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # Site
 # https://docs.djangoproject.com/en/2.0/ref/settings/#allowed-hosts
@@ -28,19 +27,4 @@ MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/'
 # 86400 = (60 seconds x 60 minutes x 24 hours)
 AWS_HEADERS = {
     'Cache-Control': 'max-age=86400, s-maxage=86400, must-revalidate',
-}
-
-# CACHES
-# ------------------------------------------------------------------------------
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("REDIS_URL"),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            # Mimicing memcache behavior.
-            # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
-            "IGNORE_EXCEPTIONS": True,
-        },
-    }
 }
