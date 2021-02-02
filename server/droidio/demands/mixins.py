@@ -12,5 +12,5 @@ class CompleteDemandMixin(object):
         if serializer.set_completed(instance):
             return Response(serializer.data)
         else:
-            return Response({"error": "This demand has already been completed!"},
-                            status=status.HTTP_405_METHOD_NOT_ALLOWED)
+            return Response("This demand has already been completed!",
+                            status=status.HTTP_200_OK)

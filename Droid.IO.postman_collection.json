@@ -314,6 +314,49 @@
 				"description": "Retrieve one specific demand"
 			},
 			"response": []
+		},
+		{
+			"name": "Set completed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b4e8678-8231-40fc-a260-81920eb87102",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/demands/1/set_completed/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"demands",
+						"1",
+						"set_completed",
+						""
+					]
+				},
+				"description": "Set demand as completed and set its completed date"
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -417,31 +460,31 @@
 	],
 	"variable": [
 		{
-			"id": "1ffc55af-12c3-4a3a-b775-436b856335b3",
+			"id": "6120844c-170b-4718-8ec2-a3bfcd91038c",
 			"key": "authService",
 			"value": "http://localhost:8000/api/token/",
 			"type": "string"
 		},
 		{
-			"id": "34d6e63d-30ae-487d-876b-b05759e402be",
+			"id": "6e030969-7677-48b4-ba76-fcb13a2467e7",
 			"key": "username",
 			"value": "test",
 			"type": "string"
 		},
 		{
-			"id": "687709c5-be7d-4243-a631-3d1688c98a3b",
+			"id": "d5775f46-1fc0-46b0-8cf5-de0dca39fff8",
 			"key": "password",
 			"value": "test",
 			"type": "string"
 		},
 		{
-			"id": "7421a399-ff86-422d-bfc9-e777688341bc",
+			"id": "4b5d2aae-1267-4151-ad37-1d9920ab7543",
 			"key": "baseUrl",
 			"value": "http://localhost:8000",
 			"type": "string"
 		},
 		{
-			"id": "38b4e334-1a5a-4e04-8086-d73caa340485",
+			"id": "b92108ac-c99a-4f6e-a48c-952a40a79386",
 			"key": "jwttoken",
 			"value": "",
 			"type": "string"
