@@ -5,12 +5,14 @@ from rest_framework import status
 
 class CompleteDemandMixin(object):
     """ Set demand as completed and set its completed date """
-    @action(detail=True, methods=['post'])
+
+    @action(detail=True, methods=["post"])
     def set_completed(self, request, pk=None):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         if serializer.set_completed(instance):
             return Response(serializer.data)
         else:
-            return Response("This demand has already been completed!",
-                            status=status.HTTP_200_OK)
+            return Response(
+                "This demand has already been completed!", status=status.HTTP_200_OK
+            )

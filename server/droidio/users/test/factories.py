@@ -17,7 +17,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_active = True
     is_superuser = False
 
-
     class Meta:
         model = "users.User"
         django_get_or_create = ("username",)

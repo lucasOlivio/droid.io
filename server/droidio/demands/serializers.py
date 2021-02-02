@@ -14,25 +14,21 @@ class DemandSerializer(serializers.ModelSerializer):
 
     def update(self, instance, valid_data):
         # Set default user updated for current user and updated date
-        valid_data['user_updated'] = self.context["request"].user
-        valid_data['date_updated'] = timezone.now()
+        valid_data["user_updated"] = self.context["request"].user
+        valid_data["date_updated"] = timezone.now()
         return super().update(instance, valid_data)
 
     def create(self, valid_data):
         # Set default user created for current user
         valid_data["user_created"] = self.context["request"].user
         return Demand.objects.create(**valid_data)
-    
+
     def set_completed(self, instance):
         if instance.is_completed:
             return False
 
-        valid_data = {
-            'is_completed': True,
-            'date_completed': timezone.now()
-        }
+        valid_data = {"is_completed": True, "date_completed": timezone.now()}
         return super().update(instance, valid_data)
-            
 
     class Meta:
         model = Demand
