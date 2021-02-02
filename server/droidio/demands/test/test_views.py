@@ -84,6 +84,14 @@ class TestDemandDetailTestCase(APITestCase):
 
         demand = Demand.objects.get(pk=self.demand.id)
         eq_(demand.description, payload["description"])
+    
+    def test_set_demand_completed(self):
+        custom_action = reverse("demands-set-completed", kwargs={"pk": self.demand.pk})
+        response = self.client.post(custom_action)
+        eq_(response.status_code, status.HTTP_200_OK)
+
+        demand = Demand.objects.get(pk=self.demand.id)
+        eq_(demand.is_completed, True)
 
     def test_delete_request_deletes_a_demand(self):
         response = self.client.delete(self.url)

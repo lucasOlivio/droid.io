@@ -1,9 +1,11 @@
 from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 
 from .models import Demand
 from .permissions import IsOwnerOrAdmin
 from .serializers import DemandSerializer
+from .mixins import CompleteDemandMixin
 
 
 class DemandViewSet(
@@ -12,6 +14,7 @@ class DemandViewSet(
     mixins.RetrieveModelMixin,
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin,
+    CompleteDemandMixin,
     viewsets.GenericViewSet,
 ):
     """ Updates, deletes and retrieves demands

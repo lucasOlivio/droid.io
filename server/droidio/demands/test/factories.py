@@ -4,8 +4,6 @@ import factory
 
 
 class DemandFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = "demands.Demand"
 
     description = factory.Faker("text")
     is_completed = False
@@ -19,3 +17,7 @@ class DemandFactory(factory.django.DjangoModelFactory):
     cellphone = "123456789"
     email = factory.Faker("email")
     user_created = factory.SubFactory(UserFactory)
+
+
+    class Meta:
+        model = "demands.Demand"
