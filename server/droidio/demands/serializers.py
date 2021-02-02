@@ -6,8 +6,7 @@ from .models import Demand
 
 
 class DemandSerializer(serializers.ModelSerializer):
-    """
-    Serializer to list, update and delete demands
+    """ Serializer to create, list, update and delete demands
     """
 
     user_created = serializers.StringRelatedField()
