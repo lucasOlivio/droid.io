@@ -15,7 +15,7 @@ services:
       - local_postgres_data:/var/lib/postgresql/data:Z
       - local_postgres_data_backups:/backups:z
     env_file:
-      - ./.envs/local/.postgres
+      - ./.envs/test/.postgres
 
   server:
     restart: always
@@ -29,8 +29,8 @@ services:
     volumes:
       - ./server:/server:z
     env_file:
-      - ./.envs/local/.server
-      - ./.envs/local/.postgres
+      - ./.envs/test/.server
+      - ./.envs/test/.postgres
     ports:
       - "8000:8000"
     command: /start
