@@ -18,6 +18,8 @@ Check out the project's [documentation](http://lucasOlivio.github.io/droidio/).
 - [Docker Linux](https://docs.docker.com/engine/install/)
 - [Docker Mac](https://docs.docker.com/docker-for-mac/install/)
 
+- [Docker-compose](https://docs.docker.com/compose/install/)
+
 # Local Development
 
 Start the dev server for local development:
