@@ -14,9 +14,9 @@ Check out the project's [documentation](http://lucasOlivio.github.io/droidio/).
 
 # Prerequisites
 
-- [Docker](https://docs.docker.com/docker-for-windows/install/)
-- [Docker](https://docs.docker.com/engine/install/)
-- [Docker](https://docs.docker.com/docker-for-mac/install/)
+- [Docker Windows](https://docs.docker.com/docker-for-windows/install/)
+- [Docker Linux](https://docs.docker.com/engine/install/)
+- [Docker Mac](https://docs.docker.com/docker-for-mac/install/)
 
 # Local Development
 
