@@ -3,7 +3,7 @@ from os.path import join
 from distutils.util import strtobool
 import dj_database_url
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.normpath(join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "droidio"))
 
 
 INSTALLED_APPS = (
@@ -64,8 +64,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), "static"))
-STATICFILES_DIRS = []
+STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), "staticfiles"))
+STATICFILES_DIRS = [os.path.normpath(join(os.path.dirname(BASE_DIR), "static"))]
 STATIC_URL = "/static/"
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
