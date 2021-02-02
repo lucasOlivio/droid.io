@@ -1,9 +1,8 @@
 language: python
 python:
   - "3.7"
-# command to install dependencies
-install:
-  - pip install -r server/requirements/local.txt
-# command to run tests
+services:
+  - docker
+before_script: pip install docker-compose
 script:
-  - pytest
+  - docker-compose -f local.yml run --rm server coverage run -m pytest
