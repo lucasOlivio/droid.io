@@ -14,7 +14,7 @@ class DemandSerializer(serializers.ModelSerializer):
     def update(self, instance, valid_data):
         # Set default user updated for current user and updated date
         valid_data['user_updated'] = self.context["request"].user
-        instance['date_updated'] = timezone.now()
+        valid_data['date_updated'] = timezone.now()
         return super().update(instance, valid_data)
 
     def create(self, valid_data):
