@@ -7,8 +7,6 @@ Long live the Empire!
 Droid.io is a project to help our allies in the best way we know, with a microservice to manage droids parts demands!
 Only authenticated users can access and are able to create, edit, list and delete all his demands with ease.
 
-Check out the project's [documentation](http://lucasOlivio.github.io/droidio/).
-
 ------------------------------------------------------------------------------------------------------------------------
 # SERVER
 
