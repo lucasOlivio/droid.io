@@ -10,6 +10,7 @@ class DemandSerializer(serializers.ModelSerializer):
     """
 
     user_created = serializers.StringRelatedField()
+    user_updated = serializers.StringRelatedField()
 
     def update(self, instance, valid_data):
         # Set default user updated for current user and updated date
