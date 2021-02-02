@@ -84,7 +84,7 @@ class TestDemandDetailTestCase(APITestCase):
 
         demand = Demand.objects.get(pk=self.demand.id)
         eq_(demand.description, payload["description"])
-    
+
     def test_set_demand_completed(self):
         custom_action = reverse("demands-set-completed", kwargs={"pk": self.demand.pk})
         response = self.client.post(custom_action)

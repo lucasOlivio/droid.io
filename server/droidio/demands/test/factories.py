@@ -18,6 +18,5 @@ class DemandFactory(factory.django.DjangoModelFactory):
     email = factory.Faker("email")
     user_created = factory.SubFactory(UserFactory)
 
-
     class Meta:
         model = "demands.Demand"

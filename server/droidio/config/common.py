@@ -3,7 +3,9 @@ from os.path import join
 from distutils.util import strtobool
 import dj_database_url
 
-BASE_DIR = os.path.normpath(join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "droidio"))
+BASE_DIR = os.path.normpath(
+    join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "droidio")
+)
 
 
 INSTALLED_APPS = (
