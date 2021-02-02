@@ -34,3 +34,7 @@ services:
     ports:
       - "8000:8000"
     command: /start
+
+  redis:
+    image: redis:5.0
+    container_name: droidio_redis

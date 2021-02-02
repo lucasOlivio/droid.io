@@ -1,3 +1,7 @@
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import AllowAny
 
@@ -16,6 +20,10 @@ class UserViewSet(
     serializer_class = UserSerializer
     permission_classes = (IsUserOrReadOnly,)
 
+    @method_decorator(cache_page(settings.CACHE_TTL))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 
 class UserCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """ Creates user accounts
@@ -24,3 +32,7 @@ class UserCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
     permission_classes = (AllowAny,)
+
+    @method_decorator(cache_page(settings.CACHE_TTL))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
