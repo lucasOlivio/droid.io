@@ -6,8 +6,7 @@ from droidio.users.models import User
 
 
 class Demand(models.Model):
-    """
-    Class for demands model.
+    """ Class for demands model.
     """
 
     description = models.CharField(

@@ -14,8 +14,7 @@ class DemandViewSet(
     mixins.DestroyModelMixin,
     viewsets.GenericViewSet,
 ):
-    """
-    Updates, deletes and retrieves demands
+    """ Updates, deletes and retrieves demands
     """
 
     serializer_class = DemandSerializer
