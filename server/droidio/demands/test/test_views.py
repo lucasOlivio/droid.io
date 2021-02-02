@@ -19,8 +19,7 @@ fake = Faker()
 
 
 class TestDemandListTestCase(APITestCase):
-    """
-    Tests /demands list operations.
+    """ Tests /demands list operations.
     """
 
     def setUp(self):
@@ -56,8 +55,7 @@ class TestDemandListTestCase(APITestCase):
 
 
 class TestDemandDetailTestCase(APITestCase):
-    """
-    Tests /demands detail operations.
+    """ Tests /demands detail operations.
     """
 
     def setUp(self):
