@@ -32,7 +32,3 @@ class UserCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
     permission_classes = (AllowAny,)
-
-    @method_decorator(cache_page(settings.CACHE_TTL))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
