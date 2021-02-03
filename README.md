@@ -40,3 +40,11 @@ Run any command inside the docker container:
 ```bash
 docker-compose -f docker-compose.local.yml run --rm server [command]
 ```
+
+- First local run will create initial users
+    - An administrator user:
+        - username: admin
+        - password: admin
+    - And an advertiser user:
+        - username: test
+        - password: test
