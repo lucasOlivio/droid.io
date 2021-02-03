@@ -20,6 +20,8 @@ Only authenticated users can access and are able to create, edit, list and delet
 
 # Local Development
 
+- Create a folder named "local" inside the .envs and set the same variables as the .envs/test files
+
 Start the dev server for local development:
 ```bash
 docker-compose -f local.yml up
