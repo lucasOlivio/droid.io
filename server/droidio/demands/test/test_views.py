@@ -6,13 +6,11 @@ from rest_framework import status
 from nose.tools import eq_
 from faker import Faker
 import factory
-import json
 
 from ..models import Demand
 from .factories import DemandFactory
 from ..serializers import DemandSerializer
 
-from droidio.users.models import User
 from droidio.users.test.factories import UserFactory
 
 fake = Faker()

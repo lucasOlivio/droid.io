@@ -5,7 +5,6 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 
 from rest_framework.routers import DefaultRouter
-from rest_framework.authtoken import views
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
