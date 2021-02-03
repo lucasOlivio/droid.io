@@ -24,17 +24,17 @@ Only authenticated users can access and are able to create, edit, list and delet
 
 Start the dev server for local development:
 ```bash
-docker-compose -f local.yml up
+docker-compose up
 ```
 
 Run tests and tests coverage in container:
 
 ```bash
-docker-compose -f local.yml run --rm server coverage run -m pytest
+docker-compose run --rm server coverage run -m pytest
 ```
 
 Run any command inside the docker container:
 
 ```bash
-docker-compose -f local.yml run --rm server [command]
+docker-compose run --rm server [command]
 ```
