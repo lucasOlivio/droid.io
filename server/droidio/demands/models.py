@@ -93,7 +93,8 @@ class Demand(models.Model):
 
     def delivery_address(self):
         return f"{self.delivery_street}, {self.delivery_number},\
-             {self.delivery_complement}, {self.delivery_city}, {self.delivery_state} - {self.delivery_cep}"
+             {self.delivery_complement}, {self.delivery_city},\
+             {self.delivery_state} - {self.delivery_cep}"
 
     def __str__(self):
         return f'{self.description} - \
