@@ -3,8 +3,13 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.1.0
     hooks:
+      - id: debug-statements
       - id: trailing-whitespace
-      - id: flake8
+      - id: end-of-file-fixer
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: v3.8.4
+    hooks:
+    -   id: flake8
   - repo: https://github.com/psf/black
     rev: 19.3b0
     hooks:
