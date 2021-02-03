@@ -18,6 +18,8 @@ Only authenticated users can access and are able to create, edit, list and delet
 
 - [Docker-compose](https://docs.docker.com/compose/install/)
 
+- [Pre-commit](https://pre-commit.com/#install)
+
 # Local Development
 
 - Create a folder named "local" inside the .envs and set the same variables as the .envs/test files
