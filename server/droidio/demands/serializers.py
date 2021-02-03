@@ -6,20 +6,19 @@ from .models import Demand
 
 
 class DemandSerializer(serializers.ModelSerializer):
-    """ Serializer to create, list, update and delete demands
-    """
+    """ Serializer to create, list, update and delete demands """
 
     user_created = serializers.StringRelatedField()
     user_updated = serializers.StringRelatedField()
 
     def update(self, instance, valid_data):
-        # Set default user updated for current user and updated date
+        """ Set default user updated for current user and updated date """
         valid_data["user_updated"] = self.context["request"].user
         valid_data["date_updated"] = timezone.now()
         return super().update(instance, valid_data)
 
     def create(self, valid_data):
-        # Set default user created for current user
+        """ Set default user created for current user """
         valid_data["user_created"] = self.context["request"].user
         return Demand.objects.create(**valid_data)
 

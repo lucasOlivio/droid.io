@@ -20,8 +20,7 @@ class DemandViewSet(
     CompleteDemandMixin,
     viewsets.GenericViewSet,
 ):
-    """ Updates, deletes and retrieves demands
-    """
+    """ Updates, deletes and retrieves demands """
 
     serializer_class = DemandSerializer
     permission_classes = (IsAuthenticated, IsOwnerOrAdmin)
