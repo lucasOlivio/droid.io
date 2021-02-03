@@ -16,7 +16,9 @@
 						"exec": [
 							"pm.test(\"Status test\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							"",
+							"pm.collectionVariables.set(\"jwttoken\", pm.response.json().access);"
 						],
 						"type": "text/javascript"
 					}
@@ -47,60 +49,7 @@
 						""
 					]
 				},
-				"description": "Get token for further requests"
-			},
-			"response": []
-		},
-		{
-			"name": "Patch demand",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f0e8d2c3-7eea-4c15-93a4-738bd9a2eeac",
-						"exec": [
-							"pm.test(\"Status test\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "Token 7fd732e457fff4e5fb4ac381e30df06c086b2d74"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"description\": \"Test patch\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/v1/demands/1/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"v1",
-						"demands",
-						"1",
-						""
-					]
-				},
-				"description": "-- REQUIRES BEARER TOKEN --\nPatch method to update only specific fields and keep other fields with the same value"
+				"description": "Requests a new jwt token to set for all requests"
 			},
 			"response": []
 		},
@@ -114,7 +63,9 @@
 						"exec": [
 							"pm.test(\"Status test\", function () {",
 							"    pm.response.to.have.status(201);",
-							"});"
+							"});",
+							"",
+							"pm.collectionVariables.set(\"demand_id\", pm.response.json().id);"
 						],
 						"type": "text/javascript"
 					}
@@ -153,6 +104,59 @@
 					]
 				},
 				"description": "-- REQUIRES BEARER TOKEN --\nCreate new demand with all the fields filled"
+			},
+			"response": []
+		},
+		{
+			"name": "Patch demand",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0e8d2c3-7eea-4c15-93a4-738bd9a2eeac",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Token 7fd732e457fff4e5fb4ac381e30df06c086b2d74"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Test patch\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/demands/{{demand_id}}/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"demands",
+						"{{demand_id}}",
+						""
+					]
+				},
+				"description": "-- REQUIRES BEARER TOKEN --\nPatch method to update only specific fields and keep other fields with the same value"
 			},
 			"response": []
 		},
@@ -222,7 +226,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/demands/1/",
+					"raw": "http://localhost:8000/api/v1/demands/{{demand_id}}/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -232,48 +236,11 @@
 						"api",
 						"v1",
 						"demands",
-						"1",
+						"{{demand_id}}",
 						""
 					]
 				},
 				"description": "Update all fields of a demand"
-			},
-			"response": []
-		},
-		{
-			"name": "Delete demand",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a7c13aaa-77b9-4020-aa1e-25b211b0f3af",
-						"exec": [
-							"pm.test(\"Status test\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/v1/demands/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"v1",
-						"demands",
-						"1"
-					]
-				},
-				"description": "Delete demand from db"
 			},
 			"response": []
 		},
@@ -297,7 +264,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/demands/1/",
+					"raw": "http://localhost:8000/api/v1/demands/{{demand_id}}/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -307,7 +274,7 @@
 						"api",
 						"v1",
 						"demands",
-						"1",
+						"{{demand_id}}",
 						""
 					]
 				},
@@ -339,7 +306,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/demands/1/set_completed/",
+					"raw": "http://localhost:8000/api/v1/demands/{{demand_id}}/set_completed/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -349,12 +316,50 @@
 						"api",
 						"v1",
 						"demands",
-						"1",
+						"{{demand_id}}",
 						"set_completed",
 						""
 					]
 				},
 				"description": "Set demand as completed and set its completed date"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete demand",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7c13aaa-77b9-4020-aa1e-25b211b0f3af",
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/demands/{{demand_id}}/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"demands",
+						"{{demand_id}}",
+						""
+					]
+				},
+				"description": "Delete demand from db"
 			},
 			"response": []
 		}
@@ -376,74 +381,7 @@
 				"id": "f5d76902-aa79-44ae-a89b-22bffb0e149e",
 				"type": "text/javascript",
 				"exec": [
-					"var authServiceUrl = pm.collectionVariables.get('authService');",
-					"var baseUrl = pm.collectionVariables.get('baseUrl');",
-					"var username = pm.collectionVariables.get('username');",
-					"var password = pm.collectionVariables.get('password');",
-					"",
-					"var sdk = require('postman-collection');",
-					"",
-					"var isValidTokenRequest = new sdk.Request({",
-					"    url: baseUrl + \"/api/v1/demands/\",",
-					"    method: 'GET',",
-					"    header: [",
-					"        new sdk.Header({",
-					"            key: 'content-type',",
-					"            value: 'application/json',",
-					"        }),",
-					"        new sdk.Header({",
-					"            key: 'acccept',",
-					"            value: 'application/json',",
-					"        }),",
-					"        new sdk.Header({",
-					"            key: 'Authorization',",
-					"            value: 'Bearer ' + pm.globals.get(\"jwttoken\"),",
-					"        }),",
-					"    ]",
-					"});",
-					"",
-					"pm.sendRequest(isValidTokenRequest, function (err, response) {",
-					"    if (response.code === 401) {",
-					"        refreshToken();",
-					"    }",
-					"});",
-					"",
-					"function refreshToken() {",
-					"    var tokenRequest = new sdk.Request({",
-					"    url: authServiceUrl,",
-					"    method: 'POST',",
-					"    header: [",
-					"        new sdk.Header({",
-					"            key: 'content-type',",
-					"            value: 'application/json'",
-					"        }),",
-					"        new sdk.Header({",
-					"            key: 'acccept',",
-					"            value: 'application/json'",
-					"        }),",
-					"    ],",
-					"    body: {",
-					"        mode: 'raw',",
-					"        raw: JSON.stringify({",
-					"            username: username,",
-					"            password: password",
-					"        })",
-					"    } ",
-					"  });",
-					"",
-					"  pm.sendRequest(tokenRequest, function (err, response) {",
-					"      if (err) {",
-					"          throw err;",
-					"      }",
-					"      ",
-					"      if (response.code !== 200) {",
-					"          throw new Error('Could not log in.');",
-					"      }",
-					"      ",
-					"      pm.collectionVariables.set(\"jwttoken\", response.json().access);",
-					"      console.log(`New token has been set: ${response.json().access}`);",
-					"  });",
-					"}"
+					""
 				]
 			}
 		},
@@ -460,31 +398,37 @@
 	],
 	"variable": [
 		{
-			"id": "6120844c-170b-4718-8ec2-a3bfcd91038c",
+			"id": "664e5c4b-cdd2-4424-ab1a-03248d258ecb",
 			"key": "authService",
 			"value": "http://localhost:8000/api/token/",
 			"type": "string"
 		},
 		{
-			"id": "6e030969-7677-48b4-ba76-fcb13a2467e7",
+			"id": "02a4be0e-cf1f-4014-b26e-c6f75191a7bf",
 			"key": "username",
 			"value": "test",
 			"type": "string"
 		},
 		{
-			"id": "d5775f46-1fc0-46b0-8cf5-de0dca39fff8",
+			"id": "e6bbc5c2-fbbf-47a7-9516-6f6c970f17a5",
 			"key": "password",
 			"value": "test",
 			"type": "string"
 		},
 		{
-			"id": "4b5d2aae-1267-4151-ad37-1d9920ab7543",
+			"id": "1eaaf7a7-0032-49a4-baaf-8be9d1061c5e",
 			"key": "baseUrl",
 			"value": "http://localhost:8000",
 			"type": "string"
 		},
 		{
-			"id": "b92108ac-c99a-4f6e-a48c-952a40a79386",
+			"id": "fe088ee0-a275-4b80-8fee-d68e6e58adb3",
+			"key": "demand_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "9d4dcffa-cf7f-4b2d-8acc-fe35726a9c25",
 			"key": "jwttoken",
 			"value": "",
 			"type": "string"
