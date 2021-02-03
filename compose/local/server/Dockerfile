@@ -1,6 +1,8 @@
 FROM python:3.8-slim-buster
 
+# Force stdin, stdout and stderr to be totally unbuffered.
 ENV PYTHONUNBUFFERED 1
+# Python won’t try to write .pyc or .pyo files on the import of source modules.
 ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN apt-get update \
